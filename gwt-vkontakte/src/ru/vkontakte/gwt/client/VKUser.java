@@ -1,10 +1,15 @@
 package ru.vkontakte.gwt.client;
 
+import ru.vkontakte.gwt.client.callback.AsyncCallbackWrapper;
 import ru.vkontakte.gwt.client.model.Case;
 import ru.vkontakte.gwt.client.model.Group;
 import ru.vkontakte.gwt.client.model.Profile;
 import ru.vkontakte.gwt.client.model.ProfileFields;
 import ru.vkontakte.gwt.client.model.Settings;
+
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
  *  Пользователи 
@@ -14,8 +19,14 @@ public class VKUser {
 	/**
 	 * возвращает установил пользователь данное приложение или нет.
 	 */
-	public static boolean isAppUser() {
-		return false;
+	public static void isAppUser(final AsyncCallback<Boolean> callback) {
+		VK.api("isAppUser", null, new AsyncCallbackWrapper<Boolean>(callback) {
+			@Override
+			protected Boolean parseResult(JSONObject result) {				
+				JSONString response = (JSONString) result.get("response");
+				return Integer.parseInt(response.stringValue()) > 0;
+			}
+		});
 	}
 	
 	/**

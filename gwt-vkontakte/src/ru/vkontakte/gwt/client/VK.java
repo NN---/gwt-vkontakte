@@ -1,5 +1,8 @@
-package ru.vkontakte.gwt.client.raw;
+package ru.vkontakte.gwt.client;
 
+
+import ru.vkontakte.gwt.client.callback.ApiCallback;
+import ru.vkontakte.gwt.client.callback.JavaScriptCallback;
 
 import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -8,6 +11,8 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class VK {
+	public static final String MODULE_NAME = "ru.vkontakte.gwt.VK";
+	
 	private static boolean testMode;
 	
 	private VK() {
@@ -43,7 +48,7 @@ public class VK {
 
 	public static native void addCallback(String name, JavaScriptCallback callback) /*-{
 		$wnd.VK.addCallback(name, function() {
-			callback.@ru.vkontakte.gwt.client.raw.JavaScriptCallback::trigger([Lcom/google/gwt/core/client/JavaScriptObject;)(arguments);
+			callback.@ru.vkontakte.gwt.client.callback.JavaScriptCallback::trigger([Lcom/google/gwt/core/client/JavaScriptObject;)(arguments);
 		});		
 	}-*/;
 	
@@ -62,7 +67,7 @@ public class VK {
 	
 	private static native void nativeApi(String method, JavaScriptObject param, JavaScriptCallback callback) /*-{
 		$wnd.VK.api(method, param, function() {
-			callback.@ru.vkontakte.gwt.client.raw.JavaScriptCallback::trigger([Lcom/google/gwt/core/client/JavaScriptObject;)(arguments);
+			callback.@ru.vkontakte.gwt.client.callback.JavaScriptCallback::trigger([Lcom/google/gwt/core/client/JavaScriptObject;)(arguments);
 		});
 	}-*/;
 }

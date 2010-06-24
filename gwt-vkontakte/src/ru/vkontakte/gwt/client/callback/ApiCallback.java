@@ -1,4 +1,4 @@
-package ru.vkontakte.gwt.client.raw;
+package ru.vkontakte.gwt.client.callback;
 
 import com.google.gwt.json.client.JSONObject;
 
