@@ -3,17 +3,14 @@ package ru.vkontakte.gwt.client;
 
 import ru.vkontakte.gwt.client.callback.ApiCallback;
 import ru.vkontakte.gwt.client.callback.JavaScriptCallback;
+import ru.vkontakte.gwt.client.impl.VKImpl;
 
-import com.google.gwt.core.client.JavaScriptException;
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class VK {
 	public static final String MODULE_NAME = "ru.vkontakte.gwt.VK";
-	
-	private static boolean testMode;
+	private static VKImpl impl;
 	
 	private VK() {
 		// Instantiation of this class is not allowed
@@ -24,50 +21,28 @@ public class VK {
 	}
 	
 	public static void init(AsyncCallback<Void> callback, boolean testMode) {
-		try {
-			VK.testMode = testMode;
-			nativeInit(callback);
-		} catch (JavaScriptException e) {
-			callback.onFailure(e);
-		}
+		getImpl().init(callback, testMode);
 	}
 
-	private static native void nativeInit(AsyncCallback<Void> callback) /*-{
-		$wnd.VK.init(
-			function() {
-				callback.@com.google.gwt.user.client.rpc.AsyncCallback::onSuccess(Ljava/lang/Object;)(null);
-			},		
-			function() {
-				callback.@com.google.gwt.user.client.rpc.AsyncCallback::onFailure(Ljava/lang/Throwable;)(null);
-			});
-	}-*/;
-
-	public static native void callMethod(String method, Object... params) /*-{
-		$wnd.VK.callMethod.apply(null, [method].concat(params));		
-	}-*/;
-
-	public static native void addCallback(String name, JavaScriptCallback callback) /*-{
-		$wnd.VK.addCallback(name, function() {
-			callback.@ru.vkontakte.gwt.client.callback.JavaScriptCallback::trigger([Lcom/google/gwt/core/client/JavaScriptObject;)(arguments);
-		});		
-	}-*/;
 	
+	public static void callMethod(String method, Object... params) {
+		getImpl().callMethod(method, params);
+	}
 
+	public static void addCallback(String name, JavaScriptCallback callback) {
+		getImpl().addCallback(name, callback);	
+	}
+	
 	public static void api(String method, JSONObject param, final ApiCallback callback) {
-		if (testMode) {
-			if (param == null) param = new JSONObject();
-			param.put("test_mode", new JSONNumber(1));
-		}
-		nativeApi(method, param.getJavaScriptObject(), new JavaScriptCallback() {		
-			public void trigger(JavaScriptObject[] params) {
-				callback.trigger(new JSONObject(params[0]));
-			}
-		});
+		getImpl().api(method, param, callback);
 	}
-	
-	private static native void nativeApi(String method, JavaScriptObject param, JavaScriptCallback callback) /*-{
-		$wnd.VK.api(method, param, function() {
-			callback.@ru.vkontakte.gwt.client.callback.JavaScriptCallback::trigger([Lcom/google/gwt/core/client/JavaScriptObject;)(arguments);
-		});
-	}-*/;
+
+	static VKImpl getImpl() {
+		if (impl == null) impl = new VKImpl();
+		return impl;
+	}
+
+	static void setImpl(VKImpl impl) {
+		VK.impl = impl;
+	}
 }
