@@ -9,7 +9,7 @@ public final class JSONUtil {
 	}
 	
 	public static JSONValue getValue(JSONValue value, String path) {
-		if (path.isEmpty())
+		if (path.length() == 0)
 			return value;
 
 		if (value == null)
