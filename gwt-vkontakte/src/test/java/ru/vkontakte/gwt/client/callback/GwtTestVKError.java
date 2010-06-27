@@ -6,7 +6,7 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.junit.client.GWTTestCase;
 
-public class VKErrorTest extends GWTTestCase {
+public class GwtTestVKError extends GWTTestCase {
 	private String errorString = 
 		"{'error': {" +
 			"'error_code': 4," +
