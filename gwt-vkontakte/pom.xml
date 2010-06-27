@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>gwt-vkontakte</groupId>
+	<groupId>ru.vkontakte.gwt-vkontakte</groupId>
 	<artifactId>gwt-vkontakte</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gwt-vkontakte</name>
@@ -10,6 +10,7 @@
 
 	<properties>
 		<gwt.version>2.0.3</gwt.version>
+		<skipTests>true</skipTests>
 	</properties>
 
 	<build>
@@ -34,6 +35,16 @@
 				</executions>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.java</include>
+					<include>**/*.gwt.xml</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 	<dependencies>
