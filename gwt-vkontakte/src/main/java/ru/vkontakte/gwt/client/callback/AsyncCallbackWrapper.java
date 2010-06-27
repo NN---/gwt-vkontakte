@@ -11,17 +11,12 @@ public abstract class AsyncCallbackWrapper<T> implements ApiCallback {
 	}
 	
 	public void trigger(JSONObject result) {
-		if (isError(result)) {
+		if (VKError.isError(result)) {
 			VKError error = new VKError(result);
 			callback.onFailure(new VKErrorException(error));
 		} else {
 			callback.onSuccess(parseResult(result));
 		}
-	}
-
-	private boolean isError(JSONObject result) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	protected abstract T parseResult(JSONObject result);
