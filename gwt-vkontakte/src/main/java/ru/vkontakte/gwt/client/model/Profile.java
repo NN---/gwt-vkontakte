@@ -1,6 +1,10 @@
 package ru.vkontakte.gwt.client.model;
 
-import java.util.Date;
+import static ru.vkontakte.gwt.client.model.ProfileFields.*;
+import ru.vkontakte.gwt.client.util.JSONUtil;
+import ru.vkontakte.gwt.client.util.NoSuchJSONValueException;
+
+import com.google.gwt.json.client.JSONValue;
 
 public class Profile {
 	private Long uid;
@@ -8,132 +12,131 @@ public class Profile {
 	private String lastName;
 	private String nickname;
 	private Sex sex;
-	private Date birthdate;
-	private String city;
-	private String country;
+	private String birthdate;
+	private Long city;
+	private Long country;
 	private String timezone;
 	private String photo;
 	private String photoMedium;
 	private String photoBig; 
 	private String homePhone;
 	private String mobilePhone; 
+	private Boolean hasMobile;
+	private String rate;
 	private String university;
 	private String universityName;
 	private String faculty;
 	private String facultyName;
 	private String graduation;
+	
+	public Profile(JSONValue value) throws NoSuchJSONValueException {
+		// Mandatory fields
+		uid = JSONUtil.getLong(value, UID.getStringId());
+		firstName = JSONUtil.getString(value, FIRST_NAME.getStringId());
+		lastName = JSONUtil.getString(value, LAST_NAME.getStringId());
+		
+		// Optional fields
+		nickname = JSONUtil.tryGetString(value, NICKNAME.getStringId());
+		sex = JSONUtil.tryGetSex(value, SEX.getStringId());
+		birthdate = JSONUtil.tryGetString(value, BIRTHDATE.getStringId());
+		city = JSONUtil.tryGetLong(value, CITY.getStringId());
+		country = JSONUtil.tryGetLong(value, COUNTRY.getStringId());
+		timezone = JSONUtil.tryGetString(value, TIMEZONE.getStringId());
+		photo = JSONUtil.tryGetString(value, PHOTO.getStringId());
+		photoMedium = JSONUtil.tryGetString(value, PHOTO_MEDIUM.getStringId());
+		photoBig = JSONUtil.tryGetString(value, PHOTO_BIG.getStringId());
+		homePhone = JSONUtil.tryGetString(value, HOME_PHONE);
+		mobilePhone = JSONUtil.tryGetString(value, MOBILE_PHONE);
+		hasMobile = JSONUtil.tryGetBoolean(value, HAS_MOBILE.getStringId());
+		rate = JSONUtil.tryGetString(value, RATE.getStringId());
+		university = JSONUtil.tryGetString(value, UNIVERSITY);
+		universityName = JSONUtil.tryGetString(value, UNIVERSITY_NAME);
+		faculty = JSONUtil.tryGetString(value, FACULTY);
+		facultyName = JSONUtil.tryGetString(value, FACULTY_NAME);
+		graduation = JSONUtil.tryGetString(value, GRADUATION);
+	}
+
 	public Long getUid() {
 		return uid;
 	}
-	public void setUid(Long uid) {
-		this.uid = uid;
-	}
+
 	public String getFirstName() {
 		return firstName;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+
 	public String getLastName() {
 		return lastName;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+
 	public String getNickname() {
 		return nickname;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+
 	public Sex getSex() {
 		return sex;
 	}
-	public void setSex(Sex sex) {
-		this.sex = sex;
-	}
-	public Date getBirthdate() {
+
+	public String getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
-	}
-	public String getCity() {
+
+	public Long getCity() {
 		return city;
 	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getCountry() {
+
+	public Long getCountry() {
 		return country;
 	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
+
 	public String getTimezone() {
 		return timezone;
 	}
-	public void setTimezone(String timezone) {
-		this.timezone = timezone;
-	}
+
 	public String getPhoto() {
 		return photo;
 	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
+
 	public String getPhotoMedium() {
 		return photoMedium;
 	}
-	public void setPhotoMedium(String photoMedium) {
-		this.photoMedium = photoMedium;
-	}
+
 	public String getPhotoBig() {
 		return photoBig;
 	}
-	public void setPhotoBig(String photoBig) {
-		this.photoBig = photoBig;
-	}
+
 	public String getHomePhone() {
 		return homePhone;
 	}
-	public void setHomePhone(String homePhone) {
-		this.homePhone = homePhone;
-	}
+
 	public String getMobilePhone() {
 		return mobilePhone;
 	}
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
+
+	public Boolean hasMobile() {
+		return hasMobile;
 	}
+
+	public String getRate() {
+		return rate;
+	}
+
 	public String getUniversity() {
 		return university;
 	}
-	public void setUniversity(String university) {
-		this.university = university;
-	}
+
 	public String getUniversityName() {
 		return universityName;
 	}
-	public void setUniversityName(String universityName) {
-		this.universityName = universityName;
-	}
+
 	public String getFaculty() {
 		return faculty;
 	}
-	public void setFaculty(String faculty) {
-		this.faculty = faculty;
-	}
+
 	public String getFacultyName() {
 		return facultyName;
 	}
-	public void setFacultyName(String facultyName) {
-		this.facultyName = facultyName;
-	}
+
 	public String getGraduation() {
 		return graduation;
-	}
-	public void setGraduation(String graduation) {
-		this.graduation = graduation;
 	}
 }

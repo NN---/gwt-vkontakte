@@ -15,31 +15,22 @@ public class Group {
  		id = JSONUtil.getLong(value, "gid");
  		name = JSONUtil.getString(value, "name");
  		photo = JSONUtil.getString(value, "photo");
- 		closed = JSONUtil.getInteger(value, "is_closed") > 0;
+ 		closed = JSONUtil.getBoolean(value, "is_closed");
  	}
- 	
- 	public Long getId() {
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public String getPhoto() {
 		return photo;
 	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
+
 	public boolean isClosed() {
 		return closed;
-	}
-	public void setClosed(boolean closed) {
-		this.closed = closed;
-	} 	
+	}	
 }

@@ -7,25 +7,35 @@ public enum Case {
 	/**
 	 * именительный 
 	 */
-	NOM, 
+	NOM("nom"), 
 	/**
 	 * родительный 
 	 */
-	GEN, 
+	GEN("gen"), 
 	/**
 	 * дательный
 	 */
-	DAT, 
+	DAT("dat"), 
 	/**
 	 * винительный
 	 */
-	ACC, 
+	ACC("acc"), 
 	/**
 	 * творительный 
 	 */
-	INS,
+	INS("ins"),
 	/**
 	 * предложный 
 	 */	
-	ABL
+	ABL("abl");
+	
+	private String caseId;
+
+	private Case(String caseId) {
+		this.caseId = caseId;
+	}
+	
+	public String getCaseId() {
+		return caseId;
+	}
 }

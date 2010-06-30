@@ -14,6 +14,6 @@ public class BooleanResponseCallbackWrapper extends AsyncCallbackWrapper<Boolean
 
 	@Override
 	protected Boolean parseResponse(JSONValue result) throws NoSuchJSONValueException {
-		return JSONUtil.getInteger(result, "response") > 0;
+		return JSONUtil.getBoolean(result, "response");
 	}
 }

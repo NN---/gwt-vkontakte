@@ -1,10 +1,10 @@
 package ru.vkontakte.gwt.client;
 
-
 import java.util.List;
 
-import ru.vkontakte.gwt.client.callback.ListResponseCallbackWrapper;
+import ru.vkontakte.gwt.client.callback.AsyncCallbackWrapper;
 import ru.vkontakte.gwt.client.callback.BooleanResponseCallbackWrapper;
+import ru.vkontakte.gwt.client.callback.ListResponseCallbackWrapper;
 import ru.vkontakte.gwt.client.callback.LongListResponseCallbackWrapper;
 import ru.vkontakte.gwt.client.callback.LongResponseCallbackWrapper;
 import ru.vkontakte.gwt.client.model.Case;
@@ -12,8 +12,11 @@ import ru.vkontakte.gwt.client.model.Group;
 import ru.vkontakte.gwt.client.model.Profile;
 import ru.vkontakte.gwt.client.model.ProfileFields;
 import ru.vkontakte.gwt.client.model.Settings;
+import ru.vkontakte.gwt.client.util.JSONUtil;
 import ru.vkontakte.gwt.client.util.NoSuchJSONValueException;
 
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -33,7 +36,25 @@ public class VKUser {
 	 * возвращает расширенную информацию о пользователях.
 	 */
 	public static void getProfiles(List<Long> uids, List<ProfileFields> fields, Case nameCase,
-			AsyncCallback<Profile> callback) {
+			AsyncCallback<List<Profile>> callback) {
+		if (uids == null || uids.isEmpty())
+			throw new IllegalArgumentException();
+		
+		JSONObject params = new JSONObject();
+		params.put("uids", JSONUtil.joinAsStrings(uids, ","));
+
+		if (fields != null)
+			params.put("fields", JSONUtil.joinStringIds(fields, ","));
+
+		if (nameCase != null)
+			params.put("name_case", new JSONString(nameCase.getCaseId()));
+
+		VK.api("getProfiles", params, new ListResponseCallbackWrapper<Profile>(callback) {
+			@Override
+			protected Profile convertValue(JSONValue value) throws NoSuchJSONValueException {
+				return new Profile(value);
+			}
+		});
 	}
 
 	/**
@@ -60,8 +81,13 @@ public class VKUser {
 	/**
 	 * возвращает настройки приложения текущего пользователя.
 	 */
-	public static Settings getUserSettings() {
-		return null;
+	public static void getUserSettings(AsyncCallback<Settings> callback) {
+		VK.api("getUserSettings", null, new AsyncCallbackWrapper<Settings>(callback) {
+			@Override
+			protected Settings parseResponse(JSONValue result) throws NoSuchJSONValueException {
+				return new Settings(JSONUtil.getValue(result, "response"));
+			}
+		});
 	}
 
 	/**

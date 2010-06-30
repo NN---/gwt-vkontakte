@@ -1,7 +1,14 @@
 package ru.vkontakte.gwt.client.util;
 
+import java.util.Iterator;
+import java.util.List;
+
+import ru.vkontakte.gwt.client.model.HasStringId;
+import ru.vkontakte.gwt.client.model.Sex;
+
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 
 public final class JSONUtil {
@@ -23,7 +30,7 @@ public final class JSONUtil {
 		if (dotIndex < 0) {
 			JSONValue jsonValue = object.get(path);
 			if (jsonValue == null)
-				throw new NoSuchJSONValueException();			
+				throw new NoSuchJSONValueException();
 			return jsonValue;
 		} else {
 			JSONValue child = object.get(path.substring(0, dotIndex));
@@ -63,6 +70,10 @@ public final class JSONUtil {
 		throw new NoSuchJSONValueException();
 	}
 
+	public static Boolean getBoolean(JSONValue value, String path) throws NoSuchJSONValueException {
+		return getInteger(value, path) > 0;
+	}
+
 	public static String getString(JSONValue value, String path) throws NoSuchJSONValueException {
 		JSONValue result = getValue(value, path);
 
@@ -88,5 +99,68 @@ public final class JSONUtil {
 		} catch (NoSuchJSONValueException e) {
 			return false;
 		}
+	}
+
+	public static <T> JSONString joinAsStrings(List<T> list, String delimiter) {
+		Iterator<T> it = list.iterator();
+		StringBuilder builder = new StringBuilder();
+		while (it.hasNext()) {
+			builder.append(it.next().toString());
+			if (it.hasNext())
+				builder.append(delimiter);
+		}
+		return new JSONString(builder.toString());
+	}
+
+	public static <T extends HasStringId> JSONString joinStringIds(List<T> list, String delimiter) {
+		Iterator<T> it = list.iterator();
+		StringBuilder builder = new StringBuilder();
+		while (it.hasNext()) {
+			builder.append(it.next().getStringId());
+			if (it.hasNext())
+				builder.append(delimiter);
+		}
+		return new JSONString(builder.toString());
+	}
+
+	public static String tryGetString(JSONValue value, String path) {
+		try {
+			return getString(value, path);
+		} catch (NoSuchJSONValueException e) {
+			return null;
+		}
+	}
+
+	public static Sex tryGetSex(JSONValue value, String path) {
+		try {
+			return Sex.getById(getInteger(value, path));
+		} catch (NoSuchJSONValueException e) {
+		}
+		return null;
+	}
+
+	public static Long tryGetLong(JSONValue value, String path) {		
+		try {
+			return getLong(value, path);
+		} catch (NoSuchJSONValueException e) {
+		}
+		return null;
+	}
+
+	public static Integer tryGetInteger(JSONValue value, String path) {
+		try {
+			return getInteger(value, path);
+		} catch (NoSuchJSONValueException e) {
+		}
+		return null;
+	}
+
+	public static Boolean tryGetBoolean(JSONValue value, String path) {
+		try {
+			return getBoolean(value, path);
+		} catch (NoSuchJSONValueException e) {
+		}
+		
+		return null;
 	}
 }
