@@ -1,7 +1,5 @@
 package ru.vkontakte.gwt.client.model;
 
-import org.apache.xpath.operations.Bool;
-
 import ru.vkontakte.gwt.client.VKTestConstants;
 import ru.vkontakte.gwt.client.util.NoSuchJSONValueException;
 
