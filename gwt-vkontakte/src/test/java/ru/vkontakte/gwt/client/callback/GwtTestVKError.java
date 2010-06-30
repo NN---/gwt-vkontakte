@@ -1,6 +1,6 @@
 package ru.vkontakte.gwt.client.callback;
 
-import ru.vkontakte.gwt.client.VK;
+import ru.vkontakte.gwt.client.VKTestConstants;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
@@ -22,6 +22,6 @@ public class GwtTestVKError extends GWTTestCase {
 
 	@Override
 	public String getModuleName() {
-		return VK.MODULE_NAME;
+		return VKTestConstants.TEST_MODULE_NAME;
 	}
 }

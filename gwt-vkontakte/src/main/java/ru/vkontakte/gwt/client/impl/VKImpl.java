@@ -48,7 +48,8 @@ public class VKImpl {
 			if (param == null) param = new JSONObject();
 			param.put("test_mode", new JSONNumber(1));
 		}
-		nativeApi(method, param.getJavaScriptObject(), new JavaScriptCallback() {		
+		JavaScriptObject jsParam = param != null ? param.getJavaScriptObject() : null;
+		nativeApi(method, jsParam, new JavaScriptCallback() {		
 			public void trigger(JavaScriptObject[] params) {
 				callback.trigger(new JSONObject(params[0]));
 			}

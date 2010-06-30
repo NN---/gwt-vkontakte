@@ -1,6 +1,8 @@
 package ru.vkontakte.gwt.client.callback;
 
-import com.google.gwt.json.client.JSONObject;
+import ru.vkontakte.gwt.client.util.NoSuchJSONValueException;
+
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public abstract class AsyncCallbackWrapper<T> implements ApiCallback {
@@ -9,15 +11,19 @@ public abstract class AsyncCallbackWrapper<T> implements ApiCallback {
 	public AsyncCallbackWrapper(AsyncCallback<T> callback) {
 		this.callback = callback;
 	}
-	
-	public void trigger(JSONObject result) {
-		if (VKError.isError(result)) {
-			VKError error = new VKError(result);
-			callback.onFailure(new VKErrorException(error));
-		} else {
-			callback.onSuccess(parseResult(result));
+
+	public void trigger(JSONValue result) {
+		try {
+			if (VKError.isError(result)) {
+				VKError error = new VKError(result);
+				callback.onFailure(new VKErrorException(error));
+			} else {
+				callback.onSuccess(parseResponse(result));
+			}
+		} catch (NoSuchJSONValueException t) {
+			callback.onFailure(new InvalidResponseException(t));
 		}
 	}
 
-	protected abstract T parseResult(JSONObject result);
+	protected abstract T parseResponse(JSONValue result) throws NoSuchJSONValueException;
 }

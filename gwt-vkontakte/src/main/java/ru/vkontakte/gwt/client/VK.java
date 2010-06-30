@@ -9,7 +9,6 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class VK {
-	public static final String MODULE_NAME = "ru.vkontakte.gwt.VK";
 	private static VKImpl impl;
 	
 	private VK() {
