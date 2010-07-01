@@ -13,7 +13,7 @@ public class VKImpl {
 	
 	private boolean testMode;
 
-	public void init(AsyncCallback<Void> callback, boolean testMode) {
+	public void init(boolean testMode, AsyncCallback<Void> callback) {
 		try {
 			this.testMode = testMode;
 			nativeInit(callback);

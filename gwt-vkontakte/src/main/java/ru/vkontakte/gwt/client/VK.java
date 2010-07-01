@@ -16,11 +16,11 @@ public class VK {
 	}
 	
 	public static void init(AsyncCallback<Void> callback) {
-		init(callback, false);
+		init(false, callback);
 	}
 	
-	public static void init(AsyncCallback<Void> callback, boolean testMode) {
-		getImpl().init(callback, testMode);
+	public static void init(boolean testMode, AsyncCallback<Void> callback) {
+		getImpl().init(testMode, callback);
 	}
 
 	

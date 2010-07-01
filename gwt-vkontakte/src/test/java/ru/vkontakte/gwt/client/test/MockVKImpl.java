@@ -30,7 +30,7 @@ public class MockVKImpl extends VKImpl {
 	}
 
 	@Override
-	public void init(AsyncCallback<Void> callback, boolean testMode) {
+	public void init(boolean testMode, AsyncCallback<Void> callback) {
 	}
 
 	public JSONValue getApiResponse() {
