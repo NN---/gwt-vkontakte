@@ -40,7 +40,6 @@ public class GwtTestVKWall extends AbstractVkApiTest {
 
 		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
 		VKWall.getPhotoUploadServer(new ExpectFailure<String>(InvalidResponseException.class));
-
 	}
 	
 	public void testSavePost() throws Exception {
