@@ -1,5 +1,7 @@
 package ru.vkontakte.gwt.sample.client;
 
+import java.util.List;
+
 import ru.vkontakte.gwt.client.VK;
 import ru.vkontakte.gwt.client.VKUser;
 
@@ -23,9 +25,9 @@ public class SampleApp implements EntryPoint {
 		addRow("Method", "Result");		
 		RootPanel.get("gwt-goes-here").add(table);		
 
-		VKUser.isAppUser(new AlertAsyncCallback<Boolean>() {		
-			public void onSuccess(Boolean result) {
-				addRow("isAppUser", result.toString());		
+		VKUser.getFriends(new AlertAsyncCallback<List<Long>>() {		
+			public void onSuccess(List<Long> ids) {
+				addRow("Friends count: ", Integer.toString(ids.size()));
 			}
 		});
 	}
