@@ -1,5 +1,8 @@
 package ru.vkontakte.gwt.client;
 
+/**
+ * TODO Implement me! 
+ */	
 public class VKQuestions {
 /*	Методы сервиса вопросов
 	questions.get – возвращает список вопросов пользователя.

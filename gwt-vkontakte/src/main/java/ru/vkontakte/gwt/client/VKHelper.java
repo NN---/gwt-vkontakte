@@ -1,5 +1,8 @@
 package ru.vkontakte.gwt.client;
 
+/**
+ * TODO Implement me! 
+ */	
 public class VKHelper {
 /*	
 	Методы, требующие наличия стороннего сервера

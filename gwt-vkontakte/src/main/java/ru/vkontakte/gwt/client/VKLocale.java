@@ -1,5 +1,8 @@
 package ru.vkontakte.gwt.client;
 
+/**
+ * TODO Implement me! 
+ */	
 public class VKLocale {
 /*	Методы для локализации приложений
 	language.getValues – возвращает список переведенных на указанный язык фраз.

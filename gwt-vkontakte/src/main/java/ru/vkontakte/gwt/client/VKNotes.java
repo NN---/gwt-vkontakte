@@ -1,5 +1,8 @@
 package ru.vkontakte.gwt.client;
 
+/**
+ * TODO Implement me! 
+ */	
 public class VKNotes {
 /*	Методы работы с заметками
 	notes.getnew – возвращает список заметок пользователя.

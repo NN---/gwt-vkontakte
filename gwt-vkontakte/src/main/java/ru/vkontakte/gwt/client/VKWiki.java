@@ -1,5 +1,8 @@
 package ru.vkontakte.gwt.client;
 
+/**
+ * TODO Implement me! 
+ */	
 public class VKWiki {
 /*	Методы работы с вики-страницами
 	pages.get – возвращает вики-страницу.

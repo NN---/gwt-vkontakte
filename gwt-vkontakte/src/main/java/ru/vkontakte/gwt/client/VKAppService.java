@@ -1,5 +1,8 @@
 package ru.vkontakte.gwt.client;
 
+/**
+ * TODO Implement me! 
+ */	
 public class VKAppService {
 /*	Методы сервиса предложений
 	offers.edit – сохраняет информацию о предложении пользователя.

@@ -1,5 +1,8 @@
 package ru.vkontakte.gwt.client;
 
+/**
+ * TODO Implement me! 
+ */	
 public class VKSms {
 /*	Методы для отправки и приема SMS
 	secure.getSMSHistory – возвращает список SMS-уведомлений, отосланных приложением.

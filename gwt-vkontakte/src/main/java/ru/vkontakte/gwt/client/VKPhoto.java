@@ -1,5 +1,8 @@
 package ru.vkontakte.gwt.client;
 
+/**
+ * TODO Implement me! 
+ */	
 public class VKPhoto {
 /*	Фотографии
 	photos.getAlbums – возвращает список альбомов пользователя.
