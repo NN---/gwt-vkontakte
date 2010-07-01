@@ -5,7 +5,7 @@ import ru.vkontakte.gwt.client.test.MockVKImpl;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
-public abstract class AbstractVkApiTest extends GWTTestCase {
+public abstract class AbstractVkApiTest extends GWTTestCase implements VKTestConstants {
 
 	private VKImpl originalVKImpl;
 	protected MockVKImpl mockVKImpl;
@@ -17,13 +17,13 @@ public abstract class AbstractVkApiTest extends GWTTestCase {
 		VK.setImpl(mockVKImpl);
 		super.gwtSetUp();
 	}
-	
+
 	@Override
 	protected void gwtTearDown() throws Exception {
 		super.gwtTearDown();
 		VK.setImpl(originalVKImpl);
 	}
-	
+
 	@Override
 	public String getModuleName() {
 		return VKTestConstants.TEST_MODULE_NAME;

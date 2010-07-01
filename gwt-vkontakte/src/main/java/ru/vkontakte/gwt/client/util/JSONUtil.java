@@ -1,5 +1,6 @@
 package ru.vkontakte.gwt.client.util;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public final class JSONUtil {
 	}
 
 	public static JSONValue getValue(JSONValue value, String path) throws NoSuchJSONValueException {
-		if (path.length() == 0)
+		if (path == null || path.length() == 0)
 			return value;
 
 		if (value == null)
@@ -38,6 +39,10 @@ public final class JSONUtil {
 		}
 	}
 
+	public static Integer getInteger(JSONValue value) throws NoSuchJSONValueException {
+		return getInteger(value, null);
+	}
+	
 	public static Integer getInteger(JSONValue value, String path) throws NoSuchJSONValueException {
 		JSONValue result = getValue(value, path);
 
@@ -54,6 +59,10 @@ public final class JSONUtil {
 		throw new NoSuchJSONValueException();
 	}
 
+	public static Long getLong(JSONValue value) throws NoSuchJSONValueException {
+		return getLong(value, null);
+	}
+	
 	public static Long getLong(JSONValue value, String path) throws NoSuchJSONValueException {
 		JSONValue result = getValue(value, path);
 
@@ -70,17 +79,40 @@ public final class JSONUtil {
 		throw new NoSuchJSONValueException();
 	}
 
+	public static Boolean getBoolean(JSONValue value) throws NoSuchJSONValueException {
+		return getBoolean(value, null);
+	}
+
 	public static Boolean getBoolean(JSONValue value, String path) throws NoSuchJSONValueException {
 		return getInteger(value, path) > 0;
 	}
 
+	public static String getString(JSONValue value) throws NoSuchJSONValueException {
+		return getString(value, null);
+	}
+	
 	public static String getString(JSONValue value, String path) throws NoSuchJSONValueException {
 		JSONValue result = getValue(value, path);
 
-		if (result.isString() != null)
-			return result.isString().stringValue();
+		if (result.isString() != null) {
+			String stringValue = result.isString().stringValue();
+			return StringUtil.unescapeHTML(stringValue);
+		}
 
 		throw new NoSuchJSONValueException();
+	}
+
+	public static JSONArray getArray(JSONValue value) throws NoSuchJSONValueException {
+		return getArray(value, null);
+	}
+
+	public static <T> List<T> convertToList(JSONValue value, JSONConverter<T> converter) throws NoSuchJSONValueException {
+		JSONArray array = JSONUtil.getArray(value);
+		ArrayList<T> resultArray = new ArrayList<T>(array.size());
+		for (int i = 0; i < array.size(); i++) {
+			resultArray.add(converter.convert(array.get(i)));
+		}
+		return resultArray;	
 	}
 
 	public static JSONArray getArray(JSONValue value, String path) throws NoSuchJSONValueException {

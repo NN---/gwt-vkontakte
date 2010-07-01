@@ -15,6 +15,6 @@ public class LongListResponseCallbackWrapper extends ListResponseCallbackWrapper
 	}
 
 	protected Long convertValue(JSONValue value) throws NoSuchJSONValueException {
-		return JSONUtil.getLong(value, "");
+		return JSONUtil.getLong(value);
 	}
 }

@@ -20,13 +20,6 @@ import ru.vkontakte.gwt.client.test.ExpectSuccess;
 import com.google.gwt.json.client.JSONParser;
 
 public class GwtTestVKUser extends AbstractVkApiTest {
-	private static String INVAID_RESPONSE = "{\"somefield\":\"somevalue\"}";
-	private String ERROR_RESPONSE = "{'error': {" + "'error_code': 4,"
-			+ "'error_msg': 'Incorrect signature'" + " }}";
-
-	private static String IS_APP_USER_TRUE_RESPONSE = "{\"response\":\"1\"}";
-	private static String IS_APP_USER_FALSE_RESPONSE = "{\"response\":\"0\"}";
-
 	private Long[] uids = new Long[] {1L, 6492L};
 	private static String GET_PROFILES_RESPONSE =
 		"{\"response\":[{\"uid\":\"1\",\"first_name\":\"Павел\",\"last_name\":\"Дуров\"," +
@@ -34,11 +27,6 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 			"{\"uid\":\"6492\",\"first_name\":\"Andrew\",\"last_name\":\"Rogozov\"," +
 			"\"photo\":\"http:\\/\\/cs537.vkontakte.ru\\/u06492\\/c_28629f1d.jpg\"}]}";
 	
-	private static String GET_USER_BALANCE_RESPONSE = "{\"response\":350}";
-	private static String GET_USER_SETTINGS_RESPONSE = "{\"response\":15}";
-	private static String GET_FRIENDS_RESPONSE = "{\"response\":[15221,17836,19194]}";
-	private static String GET_APP_FRIENDS_RESPONSE = "{\"response\":[15221,17836,19194]}";
-	private static final String GET_GROUPS_RESPONSE = "{\"response\":[1,55,103,354]}";
 	private static final String GET_GROUPS_FULL_RESPONSE = 
 		"{\"response\":[" +
 			"{\"gid\":1,\"name\":\"FLASH API\"," +
@@ -56,10 +44,10 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 	public void testIsAppUser() {
 		mockVKImpl.setExpectedApiMethod("isAppUser");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(IS_APP_USER_TRUE_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parse(TRUE_RESPONSE));
 		VKUser.isAppUser(new ExpectResult<Boolean>(true));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(IS_APP_USER_FALSE_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parse(FALSE_RESPONSE));
 		VKUser.isAppUser(new ExpectResult<Boolean>(false));
 
 		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
@@ -120,8 +108,8 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 	public void testGetFriends() {
 		mockVKImpl.setExpectedApiMethod("getFriends");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(GET_FRIENDS_RESPONSE));
-		VKUser.getFriends(new ExpectListResult<Long>(15221L,17836L,19194L));
+		mockVKImpl.setApiResponse(JSONParser.parse(LONG_ARRAY_RESPONSE));
+		VKUser.getFriends(new ExpectListResult<Long>(EXPECTED_LONG_ARRAY));
 
 		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
 		VKUser.getFriends(new ExpectFailure<List<Long>>(VKErrorException.class));
@@ -133,8 +121,8 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 	public void testGetAppFriends() {
 		mockVKImpl.setExpectedApiMethod("getAppFriends");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(GET_APP_FRIENDS_RESPONSE));
-		VKUser.getAppFriends(new ExpectListResult<Long>(15221L,17836L,19194L));
+		mockVKImpl.setApiResponse(JSONParser.parse(LONG_ARRAY_RESPONSE));
+		VKUser.getAppFriends(new ExpectListResult<Long>(EXPECTED_LONG_ARRAY));
 
 		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
 		VKUser.getAppFriends(new ExpectFailure<List<Long>>(VKErrorException.class));
@@ -146,8 +134,8 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 	public void testGetUserBalance() {
 		mockVKImpl.setExpectedApiMethod("getUserBalance");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(GET_USER_BALANCE_RESPONSE));
-		VKUser.getUserBalance(new ExpectResult<Long>(350L));
+		mockVKImpl.setApiResponse(JSONParser.parse(LONG_RESPONSE));
+		VKUser.getUserBalance(new ExpectResult<Long>(EXPECTED_LONG));
 
 		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
 		VKUser.getUserBalance(new ExpectFailure<Long>(VKErrorException.class));
@@ -159,10 +147,10 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 	public void testGetUserSettings() {
 		mockVKImpl.setExpectedApiMethod("getUserSettings");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(GET_USER_SETTINGS_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parse(LONG_RESPONSE));
 		VKUser.getUserSettings(new ExpectSuccess<Settings>() {
 			public void onSuccess(Settings settings) {
-				assertEquals(new Long(15L), settings.getValue());
+				assertEquals(EXPECTED_LONG, settings.getValue());
 			}
 		});
 
@@ -176,8 +164,8 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 	public void testGetGroups() {
 		mockVKImpl.setExpectedApiMethod("getGroups");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(GET_GROUPS_RESPONSE));
-		VKUser.getGroups(new ExpectListResult<Long>(1L,55L,103L,354L));
+		mockVKImpl.setApiResponse(JSONParser.parse(LONG_ARRAY_RESPONSE));
+		VKUser.getGroups(new ExpectListResult<Long>(EXPECTED_LONG_ARRAY));
 
 		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
 		VKUser.getGroups(new ExpectFailure<List<Long>>(VKErrorException.class));

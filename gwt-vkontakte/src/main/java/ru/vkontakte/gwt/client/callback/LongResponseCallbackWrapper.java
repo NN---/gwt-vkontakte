@@ -14,6 +14,6 @@ public class LongResponseCallbackWrapper extends AsyncCallbackWrapper<Long> {
 
 	@Override
 	protected Long parseResponse(JSONValue result) throws NoSuchJSONValueException {
-		return JSONUtil.getLong(result, "response");
+		return JSONUtil.getLong(result);
 	}
 }

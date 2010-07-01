@@ -34,7 +34,7 @@ public class Settings {
 	private Long value;
 
 	public Settings(JSONValue value) throws NoSuchJSONValueException {
-		this.value = JSONUtil.getLong(value, "");
+		this.value = JSONUtil.getLong(value);
 	}
 
 	public boolean isEnabled(Long settings) {

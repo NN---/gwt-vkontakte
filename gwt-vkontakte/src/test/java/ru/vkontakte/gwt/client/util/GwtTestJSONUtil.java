@@ -145,7 +145,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 			JSONArray array = JSONUtil.getArray(value, "response");
 			assertEquals(expectedArray.length, array.size());
 			for (int i=0; i<array.size(); i++) {
-				assertEquals(expectedArray[i], JSONUtil.getInteger(array.get(i), ""));
+				assertEquals(expectedArray[i], JSONUtil.getInteger(array.get(i)));
 			}
 		} catch (NoSuchJSONValueException ex) {
 			fail();
