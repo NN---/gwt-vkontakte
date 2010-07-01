@@ -27,8 +27,8 @@ public class VKActivity {
 	public static void get(final Long uid, AsyncCallback<Activity> callback) {
 		VK.api("activity.get", null, new AsyncCallbackWrapper<Activity>(callback) {
 			@Override
-			protected Activity parseResponse(JSONValue result) throws NoSuchJSONValueException {
-				return new Activity(result, uid);
+			protected Activity parseResponse(JSONValue response) throws NoSuchJSONValueException {
+				return new Activity(response, uid);
 			}
 		});
 	}
@@ -86,8 +86,8 @@ public class VKActivity {
 		json.put("timestamp", new JSONNumber(fromDate.getTime()));
 		VK.api("activity.getNews", json, new AsyncCallbackWrapper<News>(callback) {
 			@Override
-			protected News parseResponse(JSONValue result) throws NoSuchJSONValueException {
-				return new News(result);
+			protected News parseResponse(JSONValue response) throws NoSuchJSONValueException {
+				return new News(response);
 			}
 		});				
 	}

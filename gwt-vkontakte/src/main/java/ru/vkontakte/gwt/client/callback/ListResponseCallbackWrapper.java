@@ -16,8 +16,8 @@ public abstract class ListResponseCallbackWrapper<T> extends AsyncCallbackWrappe
 	}
 
 	@Override
-	protected List<T> parseResponse(JSONValue result) throws NoSuchJSONValueException {
-		return JSONUtil.convertToList(result, new JSONConverter<T>() {
+	protected List<T> parseResponse(JSONValue response) throws NoSuchJSONValueException {
+		return JSONUtil.convertToList(response, new JSONConverter<T>() {
 			public T convert(JSONValue jsonValue) throws NoSuchJSONValueException {
 				return convertValue(jsonValue);
 			}		

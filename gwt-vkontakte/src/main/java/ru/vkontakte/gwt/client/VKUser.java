@@ -84,8 +84,8 @@ public class VKUser {
 	public static void getUserSettings(AsyncCallback<Settings> callback) {
 		VK.api("getUserSettings", null, new AsyncCallbackWrapper<Settings>(callback) {
 			@Override
-			protected Settings parseResponse(JSONValue result) throws NoSuchJSONValueException {
-				return new Settings(result);
+			protected Settings parseResponse(JSONValue response) throws NoSuchJSONValueException {
+				return new Settings(response);
 			}
 		});
 	}

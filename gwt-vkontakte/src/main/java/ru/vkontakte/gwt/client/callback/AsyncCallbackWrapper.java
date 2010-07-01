@@ -27,5 +27,5 @@ public abstract class AsyncCallbackWrapper<T> implements ApiCallback {
 		}
 	}
 
-	protected abstract T parseResponse(JSONValue result) throws NoSuchJSONValueException;
+	protected abstract T parseResponse(JSONValue response) throws NoSuchJSONValueException;
 }
