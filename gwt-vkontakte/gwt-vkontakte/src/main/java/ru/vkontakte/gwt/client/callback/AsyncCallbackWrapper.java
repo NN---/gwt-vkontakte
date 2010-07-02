@@ -24,6 +24,8 @@ public abstract class AsyncCallbackWrapper<T> implements ApiCallback {
 			}
 		} catch (NoSuchJSONValueException t) {
 			callback.onFailure(new InvalidResponseException(t));
+		} catch (Throwable t) {
+			callback.onFailure(t);
 		}
 	}
 
