@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	
+
 	<parent>
 		<groupId>ru.vkontakte.gwt-vkontakte</groupId>
 		<artifactId>gwt-vkontakte-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>	
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
+
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>gwt-vkontakte-tests</artifactId>
 	<packaging>jar</packaging>
@@ -21,7 +21,15 @@
 				</includes>
 			</testResource>
 		</testResources>
+
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
@@ -31,6 +39,7 @@
 						<goals>
 							<goal>test</goal>
 						</goals>
+						<phase>test</phase>
 					</execution>
 				</executions>
 			</plugin>
@@ -43,7 +52,7 @@
 			<artifactId>gwt-vkontakte</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-	
+
 		<!-- GWT dependencies (from maven "central" repo) -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
