@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import ru.vkontakte.gwt.client.VK;
 import ru.vkontakte.gwt.client.VKUser;
 import ru.vkontakte.gwt.client.model.Case;
 import ru.vkontakte.gwt.client.model.Profile;
@@ -22,15 +21,17 @@ public class SampleApp implements EntryPoint {
 		table = new FlexTable();
 		table.setWidth("100%");
 		ScrollPanel panel = new ScrollPanel(table);
+		panel.setHeight("200px");
+		
 		RootPanel.get("gwt-goes-here").add(panel);		
 		
 		addRow("Method", "Result");		
 
-		VK.init(true, new AlertAsyncCallback<Void>() {			
-			public void onSuccess(Void result) {
+//		VK.init(true, new AlertAsyncCallback<Void>() {			
+//			public void onSuccess(Void result) {
 				getFriendIds();				
-			}
-		});
+//			}
+//		});
 	}
 
 	private void getFriendIds() {
