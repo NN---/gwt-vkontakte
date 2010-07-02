@@ -1,12 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.vkontakte.gwt-vkontakte</groupId>
 	<artifactId>gwt-vkontakte-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>gwt-vkontakte</name>
+	<description>GWT wrapper for VKontakte.ru javascript APIs tests</description>
 	<packaging>pom</packaging>
 
+	<properties>
+		<gwt.version>2.0.3</gwt.version>
+		<skipTests>true</skipTests>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<modules>
 		<module>gwt-vkontakte</module>
 		<module>gwt-vkontakte-tests</module>
