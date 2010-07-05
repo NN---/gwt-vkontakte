@@ -16,12 +16,30 @@
 	</properties>
 
 	<build>
+		<outputDirectory>war/WEB-INF/classes</outputDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<source>1.5</source>
 					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1-beta-1</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>war</directory>
+							<excludes>
+								<exclude>war/WEB-INF/classes</exclude>
+								<exclude>war/WEB-INF/lib</exclude>
+								<exclude>war/sample_app</exclude>
+							</excludes>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -36,13 +54,18 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<runTarget>SampleApp.html</runTarget>
+					<port>80</port>
+					<style>DETAILED</style>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>net.kindleit</groupId>
 				<artifactId>maven-gae-plugin</artifactId>
 				<version>0.5.9</version>
 			</plugin>
-						
+
 			<!-- This plug-in "enhances" your domain model objects (i.e. makes them 
 				persistent for datanucleus) -->
 			<plugin>
@@ -99,6 +122,12 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.tuckey</groupId>
+			<artifactId>urlrewritefilter</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
 		<!-- GWT dependencies (from maven "central" repo) -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
@@ -110,7 +139,6 @@
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
 			<version>${gwt.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<!-- App Engine Persistence -->
@@ -178,7 +206,7 @@
 			<id>maven-gae-plugin-repo</id>
 			<name>maven-gae-plugin repository</name>
 			<url>
-                http://maven-gae-plugin.googlecode.com/svn/repository
+				http://maven-gae-plugin.googlecode.com/svn/repository
             </url>
 		</repository>
 	</repositories>
@@ -188,7 +216,7 @@
 			<id>maven-gae-plugin-repo</id>
 			<name>maven-gae-plugin repository</name>
 			<url>
-                http://maven-gae-plugin.googlecode.com/svn/repository
+				http://maven-gae-plugin.googlecode.com/svn/repository
             </url>
 		</pluginRepository>
 	</pluginRepositories>
