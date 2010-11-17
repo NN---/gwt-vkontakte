@@ -24,7 +24,7 @@ public class GwtTestVKGeo extends AbstractVkApiTest {
 		cityIds.add(1L);
 		cityIds.add(2L);
 
-		mockVKImpl.setApiResponse(JSONParser.parse(RESPONSE));						
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(RESPONSE));						
 		VKGeo.getCities(cityIds, new ExpectSuccess<List<City>>() {
 			public void onSuccess(List<City> cities) {
 				assertEquals(2, cities.size());
@@ -34,10 +34,10 @@ public class GwtTestVKGeo extends AbstractVkApiTest {
 			}
 		});
 		
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKGeo.getCities(cityIds, new ExpectFailure<List<City>>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKGeo.getCities(cityIds, new ExpectFailure<List<City>>(InvalidResponseException.class));
 	}
 	
@@ -48,7 +48,7 @@ public class GwtTestVKGeo extends AbstractVkApiTest {
 		countryIds.add(1L);
 		countryIds.add(2L);
 
-		mockVKImpl.setApiResponse(JSONParser.parse(RESPONSE));						
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(RESPONSE));						
 		VKGeo.getCountries(countryIds, new ExpectSuccess<List<Country>>() {
 			public void onSuccess(List<Country> countries) {
 				assertEquals(2, countries.size());
@@ -58,10 +58,10 @@ public class GwtTestVKGeo extends AbstractVkApiTest {
 			}
 		});
 		
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKGeo.getCountries(countryIds, new ExpectFailure<List<Country>>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKGeo.getCountries(countryIds, new ExpectFailure<List<Country>>(InvalidResponseException.class));		
 	}
 

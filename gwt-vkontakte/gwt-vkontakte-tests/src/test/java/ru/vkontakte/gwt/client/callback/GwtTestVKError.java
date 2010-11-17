@@ -14,7 +14,7 @@ public class GwtTestVKError extends GWTTestCase {
 		" }}";
 	
 	public void testParseJSON() throws Exception {
-		JSONObject object = (JSONObject) JSONParser.parse(errorString);
+		JSONObject object = (JSONObject) JSONParser.parseStrict(errorString);
 		VKError error = new VKError(object);
 		assertEquals(4, error.getCode());
 		assertEquals("Incorrect signature", error.getMessage());

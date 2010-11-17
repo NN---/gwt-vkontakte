@@ -37,7 +37,7 @@ public class GwtTestProfile extends GWTTestCase{
 
 	public void testParseProfile() {
 		try {
-			Profile p = new Profile(JSONParser.parse(json));
+			Profile p = new Profile(JSONParser.parseStrict(json));
 			assertEquals(p.getUid(), new Long(1L));
 			assertEquals(p.getFirstName(), "Name");
 			assertEquals(p.getLastName(), "Surname");
@@ -64,7 +64,7 @@ public class GwtTestProfile extends GWTTestCase{
 		}
 		
 		try {
-			new Profile(JSONParser.parse(noFirstName));
+			new Profile(JSONParser.parseStrict(noFirstName));
 			fail();
 		} catch (NoSuchJSONValueException e) {
 			// expected

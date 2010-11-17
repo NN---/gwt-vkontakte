@@ -31,7 +31,7 @@ public class GwtTestVKAcivity extends AbstractVkApiTest {
 	public void testGet() {
 		mockVKImpl.setExpectedApiMethod("activity.get");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(GET_RESPONSE));				
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(GET_RESPONSE));				
 		VKActivity.get(131124L, new ExpectSuccess<Activity>() {
 			public void onSuccess(Activity activity) {
 				assertEquals(new Long(160773101L), activity.getId());
@@ -41,30 +41,30 @@ public class GwtTestVKAcivity extends AbstractVkApiTest {
 			}
 		});
 		
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKActivity.get(131124L, new ExpectFailure<Activity>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKActivity.get(131124L, new ExpectFailure<Activity>(InvalidResponseException.class));
 	}
 	
 	public void testSet() {
 		mockVKImpl.setExpectedApiMethod("activity.set");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(LONG_RESPONSE));				
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(LONG_RESPONSE));				
 		VKActivity.set("=)", new ExpectResult<Long>(EXPECTED_LONG));
 		
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKActivity.set("=)", new ExpectFailure<Long>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKActivity.set("=)", new ExpectFailure<Long>(InvalidResponseException.class));
 	}
 	
 	public void testGetHistory() {
 		mockVKImpl.setExpectedApiMethod("activity.getHistory");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(HISTORY_RESPONSE));				
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(HISTORY_RESPONSE));				
 		VKActivity.getHistory(new ExpectSuccess<List<Activity>>() {
 			public void onSuccess(List<Activity> acivities) {
 				assertEquals(2, acivities.size());
@@ -75,17 +75,17 @@ public class GwtTestVKAcivity extends AbstractVkApiTest {
 			}
 		});
 		
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKActivity.getHistory(new ExpectFailure<List<Activity>>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKActivity.getHistory(new ExpectFailure<List<Activity>>(InvalidResponseException.class));
 	}
 
 	public void testGetHistoryById() {
 		mockVKImpl.setExpectedApiMethod("activity.getHistory");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(HISTORY_RESPONSE));				
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(HISTORY_RESPONSE));				
 		VKActivity.getHistory(111L, new ExpectSuccess<List<Activity>>() {
 			public void onSuccess(List<Activity> acivities) {
 				assertEquals(2, acivities.size());
@@ -97,30 +97,30 @@ public class GwtTestVKAcivity extends AbstractVkApiTest {
 			}
 		});
 		
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKActivity.getHistory(111L, new ExpectFailure<List<Activity>>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKActivity.getHistory(111L, new ExpectFailure<List<Activity>>(InvalidResponseException.class));
 	}
 
 	public void testDeleteHistoryItem() {
 		mockVKImpl.setExpectedApiMethod("activity.deleteHistoryItem");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(TRUE_RESPONSE));				
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(TRUE_RESPONSE));				
 		VKActivity.deleteHistoryItem(111L, new ExpectResult<Boolean>(Boolean.TRUE));
 		
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKActivity.deleteHistoryItem(111L, new ExpectFailure<Boolean>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKActivity.deleteHistoryItem(111L, new ExpectFailure<Boolean>(InvalidResponseException.class));
 	}
 	
 	public void testGetNewsTimestamp() {
 		mockVKImpl.setExpectedApiMethod("activity.getNews");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(NEWS_RESPONSE));				
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(NEWS_RESPONSE));				
 		VKActivity.getNews(new Date(), new ExpectSuccess<News>() {
 			public void onSuccess(News news) {
 				assertEquals(new Long(3446L), news.getCount());
@@ -135,17 +135,17 @@ public class GwtTestVKAcivity extends AbstractVkApiTest {
 			}
 		});
 		
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKActivity.getNews(new Date(), new ExpectFailure<News>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKActivity.getNews(new Date(), new ExpectFailure<News>(InvalidResponseException.class));
 	}	
 
 	public void testGetNewsOffsetCount() {
 		mockVKImpl.setExpectedApiMethod("activity.getNews");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(NEWS_RESPONSE));				
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(NEWS_RESPONSE));				
 		VKActivity.getNews(111L, 2L, new ExpectSuccess<News>() {
 			public void onSuccess(News news) {
 				assertEquals(new Long(3446L), news.getCount());
@@ -160,10 +160,10 @@ public class GwtTestVKAcivity extends AbstractVkApiTest {
 			}
 		});
 		
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKActivity.getNews(111L, 2L, new ExpectFailure<News>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKActivity.getNews(111L, 2L, new ExpectFailure<News>(InvalidResponseException.class));
 	}	
 

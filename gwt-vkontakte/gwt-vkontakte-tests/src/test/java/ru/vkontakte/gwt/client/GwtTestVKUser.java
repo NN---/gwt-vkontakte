@@ -44,23 +44,23 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 	public void testIsAppUser() {
 		mockVKImpl.setExpectedApiMethod("isAppUser");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(TRUE_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(TRUE_RESPONSE));
 		VKUser.isAppUser(new ExpectResult<Boolean>(true));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(FALSE_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(FALSE_RESPONSE));
 		VKUser.isAppUser(new ExpectResult<Boolean>(false));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKUser.isAppUser(new ExpectFailure<Boolean>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKUser.isAppUser(new ExpectFailure<Boolean>(InvalidResponseException.class));
 	}
 
 	public void testGetProfiles() {
 		mockVKImpl.setExpectedApiMethod("getProfiles");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(GET_PROFILES_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(GET_PROFILES_RESPONSE));
 		VKUser.getProfiles(Arrays.asList(uids), ProfileFields.ALL, Case.NOM, new ExpectSuccess<List<Profile>>() {			
 			public void onSuccess(List<Profile> profiles) {
 				assertEquals(profiles.size(), 2);
@@ -98,86 +98,86 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 		} catch (IllegalArgumentException ex) {			
 		}
 
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKUser.getProfiles(Arrays.asList(uids), ProfileFields.ALL, Case.NOM, new ExpectFailure<List<Profile>>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKUser.getProfiles(Arrays.asList(uids), ProfileFields.ALL, Case.NOM, new ExpectFailure<List<Profile>>(InvalidResponseException.class));		
 	}
 	
 	public void testGetFriends() {
 		mockVKImpl.setExpectedApiMethod("getFriends");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(LONG_ARRAY_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(LONG_ARRAY_RESPONSE));
 		VKUser.getFriends(new ExpectListResult<Long>(EXPECTED_LONG_ARRAY));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKUser.getFriends(new ExpectFailure<List<Long>>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKUser.getFriends(new ExpectFailure<List<Long>>(InvalidResponseException.class));
 	}
 	
 	public void testGetAppFriends() {
 		mockVKImpl.setExpectedApiMethod("getAppFriends");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(LONG_ARRAY_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(LONG_ARRAY_RESPONSE));
 		VKUser.getAppFriends(new ExpectListResult<Long>(EXPECTED_LONG_ARRAY));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKUser.getAppFriends(new ExpectFailure<List<Long>>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKUser.getAppFriends(new ExpectFailure<List<Long>>(InvalidResponseException.class));
 	}
 	
 	public void testGetUserBalance() {
 		mockVKImpl.setExpectedApiMethod("getUserBalance");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(LONG_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(LONG_RESPONSE));
 		VKUser.getUserBalance(new ExpectResult<Long>(EXPECTED_LONG));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKUser.getUserBalance(new ExpectFailure<Long>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKUser.getUserBalance(new ExpectFailure<Long>(InvalidResponseException.class));
 	}
 
 	public void testGetUserSettings() {
 		mockVKImpl.setExpectedApiMethod("getUserSettings");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(LONG_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(LONG_RESPONSE));
 		VKUser.getUserSettings(new ExpectSuccess<Settings>() {
 			public void onSuccess(Settings settings) {
 				assertEquals(EXPECTED_LONG, settings.getValue());
 			}
 		});
 
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKUser.getUserSettings(new ExpectFailure<Settings>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKUser.getUserSettings(new ExpectFailure<Settings>(InvalidResponseException.class));
 	}
 
 	public void testGetGroups() {
 		mockVKImpl.setExpectedApiMethod("getGroups");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(LONG_ARRAY_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(LONG_ARRAY_RESPONSE));
 		VKUser.getGroups(new ExpectListResult<Long>(EXPECTED_LONG_ARRAY));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKUser.getGroups(new ExpectFailure<List<Long>>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKUser.getGroups(new ExpectFailure<List<Long>>(InvalidResponseException.class));		
 	}
 	
 	public void testGetGroupsFull() {
 		mockVKImpl.setExpectedApiMethod("getGroupsFull");
 
-		mockVKImpl.setApiResponse(JSONParser.parse(GET_GROUPS_FULL_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(GET_GROUPS_FULL_RESPONSE));
 		VKUser.getGroupsFull(new ExpectSuccess<List<Group>>() {			
 			public void onSuccess(List<Group> groups) {
 				assertEquals(groups.size(), 5);
@@ -189,10 +189,10 @@ public class GwtTestVKUser extends AbstractVkApiTest {
 			}
 		});
 
-		mockVKImpl.setApiResponse(JSONParser.parse(ERROR_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(ERROR_RESPONSE));
 		VKUser.getGroupsFull(new ExpectFailure<List<Group>>(VKErrorException.class));
 
-		mockVKImpl.setApiResponse(JSONParser.parse(INVAID_RESPONSE));
+		mockVKImpl.setApiResponse(JSONParser.parseStrict(INVAID_RESPONSE));
 		VKUser.getGroupsFull(new ExpectFailure<List<Group>>(InvalidResponseException.class));		
 	}
 }

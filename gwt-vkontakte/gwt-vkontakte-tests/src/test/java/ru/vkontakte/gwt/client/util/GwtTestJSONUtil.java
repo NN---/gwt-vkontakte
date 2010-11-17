@@ -33,7 +33,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testGetValue() {
-		JSONValue value = JSONParser.parse(errorString);
+		JSONValue value = JSONParser.parseStrict(errorString);
 
 		try {
 			JSONValue error = JSONUtil.getValue(value, "error");
@@ -57,7 +57,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testGetInteger() {
-		JSONValue value = JSONParser.parse(errorString);
+		JSONValue value = JSONParser.parseStrict(errorString);
 
 		try {
 			assertEquals(new Integer(4), JSONUtil.getInteger(value, "error.error_code"));
@@ -79,7 +79,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testGetLong() {
-		JSONValue value = JSONParser.parse(errorString);
+		JSONValue value = JSONParser.parseStrict(errorString);
 
 		try {
 			assertEquals(new Long(4), JSONUtil.getLong(value, "error.error_code"));
@@ -101,7 +101,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}	
 	
 	public void testGetBoolean() {
-		JSONValue value = JSONParser.parse(booleanTest);
+		JSONValue value = JSONParser.parseStrict(booleanTest);
 		try {
 			assertTrue(JSONUtil.getBoolean(value, "trueValue"));
 			assertFalse(JSONUtil.getBoolean(value, "falseValue"));
@@ -117,7 +117,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 	
 	public void testGetString() {
-		JSONValue value = JSONParser.parse(errorString);
+		JSONValue value = JSONParser.parseStrict(errorString);
 		
 		try {
 			assertEquals("Incorrect signature", JSONUtil.getString(value, "error.error_msg"));
@@ -139,7 +139,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testGetArray() {
-		JSONValue value = JSONParser.parse(arrayString);
+		JSONValue value = JSONParser.parseStrict(arrayString);
 		
 		try {
 			JSONArray array = JSONUtil.getArray(value, "response");
@@ -165,7 +165,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 	
 	public void testHasValue() {
-		JSONValue value = JSONParser.parse(errorString);
+		JSONValue value = JSONParser.parseStrict(errorString);
 		assertTrue(JSONUtil.hasValue(value, "error.error_msg"));
 		assertTrue(JSONUtil.hasValue(value, "error.error_code"));
 		assertFalse(JSONUtil.hasValue(value, "error.not_existing.value"));
@@ -189,7 +189,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testTryGetString() {
-		JSONValue value = JSONParser.parse(errorString);
+		JSONValue value = JSONParser.parseStrict(errorString);
 		
 		assertEquals("Incorrect signature", JSONUtil.tryGetString(value, "error.error_msg"));
 		assertNull(JSONUtil.tryGetString(value, "error.error_code"));
@@ -197,18 +197,18 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testTryGetSex() {
-		JSONValue ns = JSONParser.parse(sexNotSpecifiedString);
+		JSONValue ns = JSONParser.parseStrict(sexNotSpecifiedString);
 		assertEquals(Sex.NOT_SPECIFIED, JSONUtil.tryGetSex(ns, "response"));
 		
-		JSONValue male = JSONParser.parse(sexMaleString);
+		JSONValue male = JSONParser.parseStrict(sexMaleString);
 		assertEquals(Sex.MALE, JSONUtil.tryGetSex(male, "response"));
 
-		JSONValue female = JSONParser.parse(sexFemaleString);
+		JSONValue female = JSONParser.parseStrict(sexFemaleString);
 		assertEquals(Sex.FEMALE, JSONUtil.tryGetSex(female, "response"));
 	}
 	
 	public void testTryGetInteger() {
-		JSONValue value = JSONParser.parse(errorString);
+		JSONValue value = JSONParser.parseStrict(errorString);
 		
 		assertNull(JSONUtil.tryGetInteger(value, "error.error_msg"));
 		assertEquals(new Integer(4), JSONUtil.tryGetInteger(value, "error.error_code"));
@@ -216,7 +216,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testTryGetLong() {
-		JSONValue value = JSONParser.parse(errorString);
+		JSONValue value = JSONParser.parseStrict(errorString);
 		
 		assertNull(JSONUtil.tryGetLong(value, "error.error_msg"));
 		assertEquals(new Long(4), JSONUtil.tryGetLong(value, "error.error_code"));
@@ -224,7 +224,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 	
 	public void testTryGetBoolean() {
-		JSONValue value = JSONParser.parse(booleanTest);
+		JSONValue value = JSONParser.parseStrict(booleanTest);
 		assertTrue(JSONUtil.tryGetBoolean(value, "trueValue"));
 		assertFalse(JSONUtil.tryGetBoolean(value, "falseValue"));
 		assertNull(JSONUtil.tryGetBoolean(value, "undefinedValue"));

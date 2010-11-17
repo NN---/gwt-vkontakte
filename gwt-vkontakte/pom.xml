@@ -10,7 +10,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<gwt.version>2.0.3</gwt.version>
+		<gwt.version>2.1.0</gwt.version>
 		<skipTests>true</skipTests>
 	</properties>
 
