@@ -9,31 +9,31 @@ import com.google.gwt.junit.client.GWTTestCase;
 public class GwtTestProfile extends GWTTestCase{
 	
 	private String json = "{" +
-			"uid:1, " +
-			"first_name:\"Name\", " +
-			"last_name:\"Surname\", " +
-			"nickname:\"Nick\", " +
-			"sex:0, " +
-			"bdate:\"21.9\", " +
-			"city:2, " +
-			"country:3, " +
-			"timezone:\"TZ\", " +
-			"photo:\"url\", " +
-			"photo_medium:\"urlm\", " +
-			"photo_big:\"urlb\", " +
-			"home_phone:\"666\", " +
-			"mobile_phone:\"777\", " +
-			"has_mobile:1, " +
-			"rate:\"XXX\", " +
-			"university:\"NSU\", " +
-			"university_name:\"NSU name\", " +
-			"faculty:\"Faculty\", " +
-			"faculty_name:\"FName\", " +
-			"graduation:\"Graduation\"}";
+			"\"uid\":1, " +
+			"\"first_name\":\"Name\", " +
+			"\"last_name\":\"Surname\", " +
+			"\"nickname\":\"Nick\", " +
+			"\"sex\":0, " +
+			"\"bdate\":\"21.9\", " +
+			"\"city\":2, " +
+			"\"country\":3, " +
+			"\"timezone\":\"TZ\", " +
+			"\"photo\":\"url\", " +
+			"\"photo_medium\":\"urlm\", " +
+			"\"photo_big\":\"urlb\", " +
+			"\"home_phone\":\"666\", " +
+			"\"mobile_phone\":\"777\", " +
+			"\"has_mobile\":1, " +
+			"\"rate\":\"XXX\", " +
+			"\"university\":\"NSU\", " +
+			"\"university_name\":\"NSU name\", " +
+			"\"faculty\":\"Faculty\", " +
+			"\"faculty_name\":\"FName\", " +
+			"\"graduation\":\"Graduation\"}";
 	
 	private String noFirstName = "{" +
-			"last_name:\"Surname\", " +
-			"nickname:\"Nick\"}";
+			"\"last_name\":\"Surname\", " +
+			"\"nickname\":\"Nick\"}";
 
 	public void testParseProfile() {
 		try {

@@ -4,8 +4,10 @@ public interface VKTestConstants {
 	String TEST_MODULE_NAME = "ru.vkontakte.gwt.VKTest";
 	
 	String INVAID_RESPONSE = "{\"somefield\":\"somevalue\"}";
-	String ERROR_RESPONSE = "{'error': {" + "'error_code': 4,"
-			+ "'error_msg': 'Incorrect signature'" + " }}";
+	String ERROR_RESPONSE = "{\"error\": {" + 
+								"\"error_code\": 4," + 
+								"\"error_msg\": \"Incorrect signature\"" + 
+							" }}";
 
 	String TRUE_RESPONSE = "{\"response\":\"1\"}";
 	String FALSE_RESPONSE = "{\"response\":\"0\"}";

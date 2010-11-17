@@ -14,9 +14,6 @@ import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.junit.client.GWTTestCase;
 
 public class GwtTestJSONUtil extends GWTTestCase {
-	private String errorString = "{'error': {" + "'error_code': 4,"
-			+ "'error_msg': 'Incorrect signature'" + " }}";
-
 
 	private static String arrayString = "{\"response\":[15221,17836,19194]}";
 	private Object[] expectedArray = new Object[] {15221, 17836, 19194};
@@ -33,7 +30,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testGetValue() {
-		JSONValue value = JSONParser.parseStrict(errorString);
+		JSONValue value = JSONParser.parseStrict(VKTestConstants.ERROR_RESPONSE);
 
 		try {
 			JSONValue error = JSONUtil.getValue(value, "error");
@@ -57,7 +54,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testGetInteger() {
-		JSONValue value = JSONParser.parseStrict(errorString);
+		JSONValue value = JSONParser.parseStrict(VKTestConstants.ERROR_RESPONSE);
 
 		try {
 			assertEquals(new Integer(4), JSONUtil.getInteger(value, "error.error_code"));
@@ -79,7 +76,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testGetLong() {
-		JSONValue value = JSONParser.parseStrict(errorString);
+		JSONValue value = JSONParser.parseStrict(VKTestConstants.ERROR_RESPONSE);
 
 		try {
 			assertEquals(new Long(4), JSONUtil.getLong(value, "error.error_code"));
@@ -117,7 +114,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 	
 	public void testGetString() {
-		JSONValue value = JSONParser.parseStrict(errorString);
+		JSONValue value = JSONParser.parseStrict(VKTestConstants.ERROR_RESPONSE);
 		
 		try {
 			assertEquals("Incorrect signature", JSONUtil.getString(value, "error.error_msg"));
@@ -165,7 +162,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 	
 	public void testHasValue() {
-		JSONValue value = JSONParser.parseStrict(errorString);
+		JSONValue value = JSONParser.parseStrict(VKTestConstants.ERROR_RESPONSE);
 		assertTrue(JSONUtil.hasValue(value, "error.error_msg"));
 		assertTrue(JSONUtil.hasValue(value, "error.error_code"));
 		assertFalse(JSONUtil.hasValue(value, "error.not_existing.value"));
@@ -189,7 +186,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testTryGetString() {
-		JSONValue value = JSONParser.parseStrict(errorString);
+		JSONValue value = JSONParser.parseStrict(VKTestConstants.ERROR_RESPONSE);
 		
 		assertEquals("Incorrect signature", JSONUtil.tryGetString(value, "error.error_msg"));
 		assertNull(JSONUtil.tryGetString(value, "error.error_code"));
@@ -208,7 +205,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 	
 	public void testTryGetInteger() {
-		JSONValue value = JSONParser.parseStrict(errorString);
+		JSONValue value = JSONParser.parseStrict(VKTestConstants.ERROR_RESPONSE);
 		
 		assertNull(JSONUtil.tryGetInteger(value, "error.error_msg"));
 		assertEquals(new Integer(4), JSONUtil.tryGetInteger(value, "error.error_code"));
@@ -216,7 +213,7 @@ public class GwtTestJSONUtil extends GWTTestCase {
 	}
 
 	public void testTryGetLong() {
-		JSONValue value = JSONParser.parseStrict(errorString);
+		JSONValue value = JSONParser.parseStrict(VKTestConstants.ERROR_RESPONSE);
 		
 		assertNull(JSONUtil.tryGetLong(value, "error.error_msg"));
 		assertEquals(new Long(4), JSONUtil.tryGetLong(value, "error.error_code"));
