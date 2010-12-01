@@ -25,23 +25,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1-beta-1</version>
-				<configuration>
-					<webResources>
-						<resource>
-							<!-- this is relative to the pom.xml directory -->
-							<directory>war</directory>
-							<excludes>
-								<exclude>war/WEB-INF/classes</exclude>
-								<exclude>war/WEB-INF/lib</exclude>
-								<exclude>war/sample_app</exclude>
-							</excludes>
-						</resource>
-					</webResources>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
 				<version>${gwt.version}</version>
