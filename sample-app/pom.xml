@@ -37,6 +37,8 @@
 					</execution>
 				</executions>
 				<configuration>
+					<noServer>true</noServer>
+					<style>PRETTY</style>
 					<runTarget>SampleApp.html</runTarget>
 					<port>80</port>
 					<style>DETAILED</style>
@@ -45,7 +47,10 @@
 			<plugin>
 				<groupId>net.kindleit</groupId>
 				<artifactId>maven-gae-plugin</artifactId>
-				<version>0.5.9</version>
+				<version>0.6.0</version>
+				<configuration> 
+        		  <port>80</port> 
+        		</configuration> 
 			</plugin>
 
 			<!-- This plug-in "enhances" your domain model objects (i.e. makes them 
