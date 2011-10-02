@@ -1,14 +1,11 @@
 package ru.vkontakte.gwt.client.test;
 
-import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-
+import static junit.framework.Assert.assertEquals;
 import ru.vkontakte.gwt.client.callback.ApiCallback;
-import ru.vkontakte.gwt.client.callback.JavaScriptCallback;
 import ru.vkontakte.gwt.client.impl.VKImpl;
 
-import static junit.framework.Assert.*;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONValue;
 
 public class MockVKImpl extends VKImpl {
 	private JSONValue apiResponse;
@@ -22,15 +19,7 @@ public class MockVKImpl extends VKImpl {
 	}
 	
 	@Override
-	public void addCallback(String name, JavaScriptCallback callback) {
-	}
-
-	@Override
-	public void callMethod(String method, Object... params) {
-	}
-
-	@Override
-	public void init(boolean testMode, AsyncCallback<Void> callback) {
+	public void init(int apiId) {
 	}
 
 	public JSONValue getApiResponse() {

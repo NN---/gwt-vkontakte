@@ -6,7 +6,7 @@ import ru.vkontakte.gwt.client.util.NoSuchJSONValueException;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public abstract class AsyncCallbackWrapper<T> implements ApiCallback {
+public abstract class AsyncCallbackWrapper<T> extends ApiCallback {
 	private AsyncCallback<T> callback;
 
 	public AsyncCallbackWrapper(AsyncCallback<T> callback) {
