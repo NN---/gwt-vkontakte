@@ -4,6 +4,7 @@ This is a further development of the original project: http://code.google.com/p/
 
 # Usage
 
+```java
 	VK.init([YOUR_APP_ID]);
 
 	VK.Auth.getLoginStatus(new AuthInfoCallback());
@@ -21,3 +22,4 @@ This is a further development of the original project: http://code.google.com/p/
             }
         }
     }
+```
